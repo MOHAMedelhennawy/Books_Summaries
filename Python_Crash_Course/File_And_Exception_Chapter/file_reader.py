@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""This file to Summaries How to read from a file
+"""
+
 
 # Reading an entire file:
 with open("pi_digits.txt") as file_obj:
