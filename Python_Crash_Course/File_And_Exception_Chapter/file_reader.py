@@ -145,3 +145,32 @@ else:
 #          the with block that contains it, so you can store the file line's in a list inside the block
 #          to process parts of the file immediately and postpone some processing for later in the program
 #          outside the with statment. For Example see ""Making a List of Lines from a File Chapter""
+
+
+# =================================================================================
+    
+# From "Corey Schafer" Channel:
+
+with open("programming.txt") as file_obj:
+    size_to_read = 2
+    content = file_obj.read(size_to_read)   # Read only first two bytes
+    print(len(content))
+
+    while len(content) > 0:     # While 2 > 0
+        print(content, end="")      # Print first two bytes that you read
+        content = file_obj.read(size_to_read)   # without this line, boom.. infinity loop
+                                                # so i read first 2 char's, then next 2 char's
+                                                # until reach to the end of the file, and return 0 because it's read blanck line
+
+
+with open("programming.txt") as file_obj:
+    size_to_read = 2
+    content = file_obj.read(size_to_read)
+    print(file_obj.tell())      # => output: 2, Because he read first 2 bytes until new
+    content = file_obj.read(size_to_read)
+    print(file_obj.tell())      # => output: 4, Because he read first 4 bytes until now
+
+    file_obj.seek(0)
+    print(file_obj.tell())      # => output: 0, Because you used seek method
+    print(file_obj.read())
+    print(file_obj.tell())      # => output: 114, Because you read all file

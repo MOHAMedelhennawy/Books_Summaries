@@ -40,3 +40,22 @@ file_name = "programming.txt"
 with open(file_name, "a") as file_obj:
     file_obj.write("I also love finding meaning in large datasets.\n")
     file_obj.write("I love creating apps that can run in a browser.\n")
+
+# =============================================================
+# =============================================================
+
+# How to copy from file to another file?:
+
+with open(file_name, "r") as file_read:
+    with open("programming_copy.txt", "w") as file_write:
+        for line in file_read:
+            file_write.write(line)
+
+# But instead of copy line by line:
+with open(file_name, "r") as file_read:
+    with open("programming_copy.txt", "w") as file_write:
+        read_size = 1024
+        read_bytes = file_read.read(read_size)
+        while len(read_bytes) > 0:
+            file_write.write(read_bytes)
+            read_bytes = file_read.read()
